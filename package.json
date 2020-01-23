@@ -1,0 +1,32 @@
+{
+  "name": "calculusvisualizer",
+  "version": "1.0.0",
+  "description": "Calculus visualizer enables students to gain an intuitive understanding of calculus by showing the wonders of calculus in action. ",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectsByJackHe/CalculusVisualizer.git"
+  },
+  "keywords": [
+    "derivatives",
+    "integrals",
+    "riemann",
+    "sums",
+    "taylor",
+    "series",
+    "maclaurin",
+    "series"
+  ],
+  "author": "ProjectsByJackHe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProjectsByJackHe/CalculusVisualizer/issues"
+  },
+  "homepage": "https://github.com/ProjectsByJackHe/CalculusVisualizer#readme",
+  "dependencies": {
+    "mathjs": "^6.5.0"
+  }
+}
