@@ -16,15 +16,22 @@
         <link rel="stylesheet" href="./css/Buttons.css">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
-        <!--JQeury for manipulating the DOM and DESMOS API-->
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <!--DESMOS API-->
         <script src="https://www.desmos.com/api/v1.4/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    
+        <!-- JQuery, and MathQuill library for typing mathematical expressions and latex -->
+        <link rel="stylesheet" href="./mathquill/mathquill.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="./mathquill/mathquill.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-        <script src="" async defer></script>
+        <div id = "userInput">
+            <h1>f(x) =  <span id="math-field"></span></h1>
+        </div>
+        <div id = "root"></div>
+        <script src="./src/js/Main.js" async defer type="module"></script>
     </body>
 </html>
