@@ -28,6 +28,18 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <div class = "jumbotron" id = "buttonsContainer">
+            
+            <button id  = "button-derivative" class = "btn btn-primary">⇓ Visualize Derivative</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <button id = "stop" class = "btn btn-danger">STOP</button>
+                    <button id = "start" class = "btn btn-success">START</button><br>
+                </div>
+           
+            <button id  = "button-taylor" class = "btn btn-primary">Visualize Taylor Series</button>
+
+            <button id  = "button-riemann" class = "btn btn-primary">Visualize Riemann sums</button>
+        </div>
         <div id = "userInput">
             <h1>f(x) =  <span id="math-field"></span></h1>
         </div>
