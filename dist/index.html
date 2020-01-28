@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Calculus Visualizer</title>
+        <meta name="description" content="Learn Calculus">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Core Custom CSS Files + Bootstrap-->
+        <link rel="stylesheet" href="/Main.f769d276.css">
+        <link rel="stylesheet" href="/UI.b1478d7b.css">
+        <link rel="stylesheet" href="/Buttons.7014d4d9.css">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <!--DESMOS API-->
+        <script src="https://www.desmos.com/api/v1.4/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    
+        <!-- JQuery, math.js and MathQuill library for typing mathematical expressions and latex -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link rel="stylesheet" href="/mathquill.65d1f9b6.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="/mathquill.5420e5d5.js"></script>
+    <script src="/Main.f769d276.js"></script><script src="/UI.b1478d7b.js"></script><script src="/Buttons.7014d4d9.js"></script><script src="/mathquill.65d1f9b6.js"></script></head>
+    <body style="background-color: black;">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="jumbotron" id="buttonsContainer">
+            
+            <button id="button-derivative" class="btn btn-primary">⇓ Visualize Derivative</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <h4>Start:</h4><input type="number" id="start">
+                    <h4>End:</h4><input type="number" id="end">
+                    <button id="stopFn" class="btn btn-danger">STOP</button>
+                    <button id="startFn" class="btn btn-success">START</button><br>
+                </div>
+           
+            <button id="button-taylor" class="btn btn-primary">Visualize Taylor Series</button>
+
+            <button id="button-riemann" class="btn btn-primary">Visualize Riemann sums</button>
+        </div>
+        <div id="userInput">
+            <h1>f(x) =  <span id="math-field"></span></h1>
+        </div>
+        <div id="root"></div>
+        <script src="/Main.cf13607d.js" type="module"></script>
+    </body>
+</html>

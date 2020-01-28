@@ -1,0 +1,27 @@
+#buttonsContainer{
+    margin-top: 0px;
+    height: 20px;
+    background-color: black;
+}
+
+#button-taylor{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0275d8;
+    width: 137px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/*# sourceMappingURL=/Buttons.7014d4d9.css.map */
