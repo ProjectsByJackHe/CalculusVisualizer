@@ -4,6 +4,7 @@
   "description": "Calculus visualizer enables students to gain an intuitive understanding of calculus by showing the wonders of calculus in action. ",
   "main": "index.html",
   "scripts": {
+    "build": "webpack --config ./webpack.config.js --mode development",
     "test": "test"
   },
   "repository": {
@@ -28,5 +29,13 @@
   "homepage": "https://github.com/ProjectsByJackHe/CalculusVisualizer#readme",
   "dependencies": {
     "mathjs": "^6.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   }
 }

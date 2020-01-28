@@ -11,6 +11,7 @@ import RenderObj from './Render.js'
 // DATA DEFINITIONS
 // ===========================================================================================================
 // EFFECTS: initialize graphing calculator class and configure settings
+
 const graph = document.getElementById("root")
 const derivativeButton = document.getElementById("button-derivative")
 const taylorButton = document.getElementById("button-taylor")
@@ -42,6 +43,7 @@ var mathField = MQ.MathField(mathFieldSpan, {
   handlers: {
     edit: function() {
       func = mathField.latex()
+      console.log(func)
       Render.renderFunc(mathField.latex())
     }
   }
