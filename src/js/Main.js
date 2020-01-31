@@ -2,11 +2,6 @@
 // renders a latex expression onto the canvas
 import RenderObj from './Render.js'
 
-// string number -> List(Number, Number)
-//                  List(dx,     f(x))
-// returns the derivative a given expressioin at a specific point and F(x)
-
-
 // ===========================================================================================================
 // DATA DEFINITIONS
 // ===========================================================================================================
@@ -27,7 +22,6 @@ initializeGraph.updateSettings({expressions: false})
 initializeGraph.updateSettings({keypad: false})
 initializeGraph.updateSettings({settingsMenu: false})
 initializeGraph.updateSettings({zoomButtons: false})
-// console.log(initializeGraph)
 
 var func;
 
@@ -42,9 +36,15 @@ var mathField = MQ.MathField(mathFieldSpan, {
   spaceBehavesLikeTab: true, 
   handlers: {
     edit: function() {
-      func = mathField.latex()
-      console.log(func)
-      Render.renderFunc(mathField.latex())
+     func = mathField.latex()
+      // console.log(func)
+      // try{
+      //   Render.renderDerivative(func, 0, 10) 
+      // }
+      // catch{
+      //   console.log("invalid func")
+      // }
+      Render.renderFunc(func)
     }
   }
 });
@@ -56,7 +56,12 @@ startFn.onclick =  function(){
     alert("Hmm... check to see that you have a valid start and end bound and a valid function")
     return
   }
-  Render.renderDerivative(func, Number(start.value), Number(end.value))
+  try {
+    Render.renderDerivative(func, Number(start.value), Number(end.value))
+  }
+  catch(err){
+    alert("Check that you have a valid function. All trigonometric functions must have valid brackets ( ). i. e. sin(x), cos(x), tan(x)... etc.")
+  }
 }
 
 // EFFECTS: get Number x1 and Number x2 from user 
@@ -80,17 +85,17 @@ function askForBoundsIntegral(){
 }
 
 derivativeButton.onclick = function() {
-  console.log("d/dx")
+//  console.log("d/dx")
   askForBounds()
 }
 
 taylorButton.onclick = function(){
-  console.log("taylor")
+//  console.log("taylor")
   askForPoint()
 }
 
 riemannButton.onclick = function(){
-  console.log("riemann")
+//  console.log("riemann")
   askForBoundsIntegral()
 }
 
