@@ -12,10 +12,12 @@ const derivativeButton = document.getElementById("button-derivative")
 const taylorButton = document.getElementById("button-taylor")
 const riemannButton = document.getElementById("button-riemann") 
 const initializeGraph = Desmos.GraphingCalculator(graph)
-const startFn = document.getElementById("startFn")
-const endFn = document.getElementById("endFn")
-const start = document.getElementById("start")
-const end = document.getElementById("end")
+const startVisualizing = document.getElementById("startVisualizing")
+const startVisualizingRiemann = document.getElementById("startVisualizing_0")
+const startBoundInputDerivatives = document.getElementById("startBoundInput")
+const endBoundInputDerivatives = document.getElementById("endBoundInput")
+const startBoundInputRiemann = document.getElementById("startBoundInput_0")
+const endBoundInputRiemann = document.getElementById("endBoundInput_0")
 const Render = new RenderObj()
 initializeGraph.updateSettings({invertedColors: true})
 initializeGraph.updateSettings({expressions: false})
@@ -50,29 +52,60 @@ var mathField = MQ.MathField(mathFieldSpan, {
 });
 
 // EFFECTS: start the visualization process for DERIVATIVES
-startFn.onclick =  function(){
+startVisualizing.onclick =  function(){
   // user clicked on the start initialization button
-  if (start.value === "" || end.value === "" || Number(start.value) > Number(end.value) || func === undefined){
+  if (startBoundInputDerivatives.value === "" || endBoundInputDerivatives.value === "" || Number(startBoundInputDerivatives.value) > Number(endBoundInputDerivatives.value) || func === undefined){
     alert("Hmm... check to see that you have a valid start and end bound and a valid function")
     return
   }
   try {
-    Render.renderDerivative(func, Number(start.value), Number(end.value))
+    Render.renderDerivative(func, Number(startBoundInputDerivatives.value), Number(endBoundInputDerivatives.value))
   }
   catch(err){
-    alert("Check that you have a valid function. All trigonometric functions must have valid brackets ( ). i. e. sin(x), cos(x), tan(x)... etc.")
+    alert("Check that you have a valid function. All trigonometric functions must have valid brackets ( ). i. e. sin(x), cos(x), tan(x)... etc. Error message: " + err)
+  }
+}
+
+startVisualizingRiemann.onclick =  function(){
+  // user clicked on the start initialization button
+  if (startBoundInputRiemann.value === "" || endBoundInputRiemann.value === "" || Number(startBoundInputRiemann.value) > Number(endBoundInputRiemann.value) || func === undefined){
+    alert("Hmm... check to see that you have a valid start and end bound and a valid function")
+    return
+  }
+  try {
+    alert("yay!")
+  }
+  catch(err){
+    alert("Check that you have inputed a valid function. Error message: " + err)
   }
 }
 
 // EFFECTS: get Number x1 and Number x2 from user 
-function askForBounds(){
-  if (document.getElementById("myDropdown").style.display === "block"){
-    document.getElementById("myDropdown").style.display = "none"
-    document.getElementById("button-derivative").innerHTML = "⇓ Visualize Derivative"
-    return
-  }
-  document.getElementById("myDropdown").style.display = "block" 
-  document.getElementById("button-derivative").innerHTML = "⇑ Close Menu" 
+function askForBounds(ref){
+
+      if (ref === "derivative") {
+
+
+        if (document.getElementById("myDropdown").style.display === "block"){
+          document.getElementById("myDropdown").style.display = "none"
+          document.getElementById("button-derivative").innerHTML = "⇓ Visualize Derivative"
+          return
+        }
+        document.getElementById("myDropdown").style.display = "block" 
+        document.getElementById("button-derivative").innerHTML = "⇑ Close Menu" 
+
+
+      } else if (ref === "riemann") {
+        
+        if (document.getElementById("myDropdown_0").style.display === "block"){
+          document.getElementById("myDropdown_0").style.display = "none"
+          document.getElementById("button-riemann").innerHTML = "⇓ Visualize Derivative"
+          return
+        }
+        document.getElementById("myDropdown_0").style.display = "block" 
+        document.getElementById("button-riemann").innerHTML = "⇑ Close Menu" 
+
+    }
 }
 
 // EFFECTS: get Number x from user
@@ -80,13 +113,9 @@ function askForPoint(){
   // asks for point where we will take the taylor expansion
 }
 
-function askForBoundsIntegral(){
-  // provide additional options to continuously take integrals
-}
-
 derivativeButton.onclick = function() {
 //  console.log("d/dx")
-  askForBounds()
+  askForBounds("derivative")
 }
 
 taylorButton.onclick = function(){
@@ -96,7 +125,7 @@ taylorButton.onclick = function(){
 
 riemannButton.onclick = function(){
 //  console.log("riemann")
-  askForBoundsIntegral()
+  askForBoundsIntegral("riemann")
 }
 
 export default initializeGraph
