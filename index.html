@@ -28,30 +28,30 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class = "jumbotron" id = "buttonsContainer">
-            
+        <div id = "buttonsContainer">
+            <!--Visualize Derivative-->
             <button id  = "button-derivative" class = "btn btn-primary">⇓ Visualize Derivative</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <h4>Start:</h4><input type = "number" id = "startBoundInput">
-                    <h4>End:</h4><input type = "number" id = "endBoundInput">
-                    <button id = "startVisaulizing" class = "btn btn-success">START</button><br>
+                    <h4>Start:</h4><input type = "number" id = "startBoundInput" class = "inputField">
+                    <h4>End:</h4><input type = "number" id = "endBoundInput" class = "inputField">
+                    <button id = "startVisualizing" class = "btn btn-success">START</button><br>
                 </div>
-           
-            <button id  = "button-taylor" class = "btn btn-primary">Visualize Taylor Series</button>
+        
+            <!--Visualize Taylor Series-->    
+            <button id  = "button-taylor" class = "btn btn-warning">Visualize Taylor Series</button>
 
-
-            <button id  = "button-riemann" class = "btn btn-primary">Visualize Riemann sums</button>
+       
+            <!--Visualize Riemann sums-->
+            <button id  = "button-riemann" class = "btn btn-danger">Visualize Riemann sums</button>
             <div id="myDropdown_0" class="dropdown-content">
-                <h4>Start:</h4><input type = "number" id = "startBoundInput_0">
-                <h4>End:</h4><input type = "number" id = "endBoundInput_0">
-                <button id = "startVisaulizing_0" class = "btn btn-success">START</button><br>
+                <h4>Start:</h4><input type = "number" id = "startBoundInput_0" class = "inputField">
+                <h4>End:</h4><input type = "number" id = "endBoundInput_0" class = "inputField">
+                <button id = "startVisualizing_0" class = "btn btn-success">START</button><br>
             </div>
-
-
-            <h5 style="color:white; float: right;">All trigonometric functions and their products MUST have proper brackets for d/dx. I.E. sin(x), (x)sin(x)</h5> <br>
-            <h5 style="color:white; float: right;">All fraction coefficients MUST be converted to decimal form, or power form C^(-1).</h5> 
+            <!-- <h5 style="color:white; float: right;">All trigonometric functions and their products MUST have proper brackets for d/dx. I.E. sin(x), (x)sin(x)</h5> <br> -->
+            <!-- <h5 style="color:white; float: right;">All fraction coefficients MUST be converted to decimal form, or power form C^(-1).</h5>  -->
         </div>
-        <h2 style="text-align: center; color:white">Made with ♡ by Jack He.</h2> <p style="text-align: center; color: white;"> Built using Node.js, mathjs, opensource Desmos API, HTML/CSS/bootstrap</p> <h5 style="text-align: center;"><a  target="_blank" href = "https://github.com/ProjectsByJackHe">Github •</a> <a  target="_blank" href = "https://www.linkedin.com/in/jack-he-845587161/">LinkedIn •</a> <a  target="_blank" href = "https://jackhe.codes/">Website •</a> <a href = "https://www.youtube.com/channel/UC9xFO-llZ2ontatfj9LtLxw?view_as=subscriber" target="_blank">YouTube</a></h5>
+        <h2 id = "author">Made with ♡ by Jack He.</h2> <p style="text-align: center; color: white;"> Built using Node.js, mathjs, opensource Desmos API, HTML/CSS/bootstrap</p> <h5 style="text-align: center;"><a  target="_blank" href = "https://github.com/ProjectsByJackHe">Github •</a> <a  target="_blank" href = "https://www.linkedin.com/in/jack-he-845587161/">LinkedIn •</a> <a  target="_blank" href = "https://jackhe.codes/">Website •</a> <a href = "https://www.youtube.com/channel/UC9xFO-llZ2ontatfj9LtLxw?view_as=subscriber" target="_blank">YouTube</a></h5>
         <div id = "userInput">  
             <h1>f(x) =  <span id="math-field"></span></h1>
         </div>

@@ -1,25 +1,29 @@
 #buttonsContainer{
-    margin-top: 0px;
-    height: 20px;
+    height: inherit;
     background-color: black;
+    display: block;
 }
 
-#button-taylor{
-    margin-right: 20px;
-    margin-left: 20px;
+
+#button-riemann {
+    margin-top: 20px;
+    width: 220px;
+    margin-left: 10px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #0275d8;
-    width: 137px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+#button-derivative {
+    margin-top: 20px;
+    width: 220px;
+    margin-left: 10px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+#button-taylor {
+    margin-top: 20px;
+    width: 220px;
+    margin-left: 10px;
+}
+
+.btn-success {
+    width: 100px;
+    margin-left: 60px;
 }

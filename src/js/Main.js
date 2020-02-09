@@ -7,6 +7,7 @@ import RenderObj from './Render.js'
 // ===========================================================================================================
 // EFFECTS: initialize graphing calculator class and configure settings
 
+
 const graph = document.getElementById("root")
 const derivativeButton = document.getElementById("button-derivative")
 const taylorButton = document.getElementById("button-taylor")
@@ -96,10 +97,10 @@ function askForBounds(ref){
 
 
       } else if (ref === "riemann") {
-        
+        document.getElementById("myDropdown_0").style.backgroundColor = "red"
         if (document.getElementById("myDropdown_0").style.display === "block"){
           document.getElementById("myDropdown_0").style.display = "none"
-          document.getElementById("button-riemann").innerHTML = "⇓ Visualize Derivative"
+          document.getElementById("button-riemann").innerHTML = "⇓ Visualize Riemann sums"
           return
         }
         document.getElementById("myDropdown_0").style.display = "block" 
@@ -125,7 +126,7 @@ taylorButton.onclick = function(){
 
 riemannButton.onclick = function(){
 //  console.log("riemann")
-  askForBoundsIntegral("riemann")
+  askForBounds("riemann")
 }
 
 export default initializeGraph

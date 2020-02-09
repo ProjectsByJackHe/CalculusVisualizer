@@ -3,3 +3,9 @@
     height: 700px;
     margin-top: 0px;
 }
+
+#author {
+    text-align: center; 
+    color:white;
+    margin-top: 15px;
+}
