@@ -1,6 +1,7 @@
 import initializeGraph from './Main.js'
 import takeDx from './Derivative.js'
 
+
 class Render{
     // String -> Image
     // draws the graph onto the screen

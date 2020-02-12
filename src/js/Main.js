@@ -1,6 +1,5 @@
-// string -> image
-// renders a latex expression onto the canvas
 import RenderObj from './Render.js'
+import Riemann from './Riemann.js'
 
 // ===========================================================================================================
 // DATA DEFINITIONS
@@ -40,7 +39,7 @@ var mathField = MQ.MathField(mathFieldSpan, {
   handlers: {
     edit: function() {
      func = mathField.latex()
-      // console.log(func)
+       console.log(func)
       // try{
       //   Render.renderDerivative(func, 0, 10) 
       // }
@@ -51,6 +50,9 @@ var mathField = MQ.MathField(mathFieldSpan, {
     }
   }
 });
+
+// "\\polygon\\left(\\left(0,0\\right),\\ \\left(0,1\\right),\\ \\left(1,1\\right),\\ \\left(1,\\ 0\\right)\\right)"
+        
 
 // EFFECTS: start the visualization process for DERIVATIVES
 startVisualizing.onclick =  function(){
@@ -67,6 +69,23 @@ startVisualizing.onclick =  function(){
   }
 }
 
+// global riemann object
+var riemann;
+
+startBoundInputRiemann.oninput = function() {updateDx()}
+endBoundInputRiemann.oninput = function() {updateDx()}
+
+// MODIFIES: riemann
+// EFFECTS: updates global object
+function updateDx() {
+  if (startBoundInputRiemann.value != "" && endBoundInputRiemann.value != ""){
+    // we set the dx here:
+    const dx = Number(endBoundInputRiemann.value) - Number(startBoundInputRiemann.value)
+    //    console.log(dx)
+    riemann = new Riemann(dx, 0, 0, func)
+  }
+}
+
 startVisualizingRiemann.onclick =  function(){
   // user clicked on the start initialization button
   if (startBoundInputRiemann.value === "" || endBoundInputRiemann.value === "" || Number(startBoundInputRiemann.value) > Number(endBoundInputRiemann.value) || func === undefined){
@@ -74,7 +93,17 @@ startVisualizingRiemann.onclick =  function(){
     return
   }
   try {
-    alert("yay!")
+    const originalValue = Number(endBoundInputRiemann.value) - Number(startBoundInputRiemann.value)
+    if (riemann.dx === originalValue / 128) {
+      alert("Warning: continuing to approximate will slow down your computer")
+    }
+    let e = document.getElementById("pointOfApproximation");
+    riemann.pos = e.options[e.selectedIndex].value 
+
+    riemann.startBound = Number(startBoundInputRiemann.value)
+    riemann.endBound = Number(endBoundInputRiemann.value)
+    riemann.dx = riemann.dx / 2
+    riemann.startVisualization()
   }
   catch(err){
     alert("Check that you have inputed a valid function. Error message: " + err)
@@ -86,7 +115,6 @@ function askForBounds(ref){
 
       if (ref === "derivative") {
 
-
         if (document.getElementById("myDropdown").style.display === "block"){
           document.getElementById("myDropdown").style.display = "none"
           document.getElementById("button-derivative").innerHTML = "⇓ Visualize Derivative"
@@ -97,12 +125,18 @@ function askForBounds(ref){
 
 
       } else if (ref === "riemann") {
+
         document.getElementById("myDropdown_0").style.backgroundColor = "red"
+        document.getElementById("myDropdown_0").style.left = "240px"
+
         if (document.getElementById("myDropdown_0").style.display === "block"){
+          // clear all expressions on the screen
+          initializeGraph.removeExpressions(initializeGraph.getExpressions())
           document.getElementById("myDropdown_0").style.display = "none"
           document.getElementById("button-riemann").innerHTML = "⇓ Visualize Riemann sums"
           return
         }
+
         document.getElementById("myDropdown_0").style.display = "block" 
         document.getElementById("button-riemann").innerHTML = "⇑ Close Menu" 
 
