@@ -199,6 +199,7 @@ function askForBounds(ref) {
           taylor = new Taylor(Number(pointOfApprox.value), func)
         }
         
+        pointOfApprox.value = ""
 
         document.getElementById("myDropdown_1").style.display = "none"
         document.getElementById("button-taylor").innerHTML = "⇓ Visualize Taylor Series"
