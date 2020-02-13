@@ -21,10 +21,11 @@ function takeDx(func, start, end, increment){
         let scope = {
             x:point
         }
-        derivativesAndF.push([derivativeFuncEval.evaluate(scope), math.evaluate(func, scope)])
+        const derivative = derivativeFuncEval.evaluate(scope) 
+        derivativesAndF.push([derivative, math.evaluate(func, scope)])
     }
 
-    return derivativesAndF // stub
+    return derivativesAndF 
 }
 
 export default takeDx

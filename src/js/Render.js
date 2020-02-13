@@ -35,7 +35,7 @@ class Render{
 
             // INCREMENT is Number
             // interp. as the dx value along the x axis
-            let INCREMENT = 0.1
+            let INCREMENT = 0.05
 
             // listOfDerivativesAndFunctions is [Number, Number]
             // the first item of the array represents the DERIVATIVE, 
@@ -45,7 +45,7 @@ class Render{
 
             // interval is Number
             // interp. as the number of milliseconds per interval of setInterval
-            let interval = 30
+            let interval = 40
 
             var point = start
             var index = 0
@@ -56,10 +56,13 @@ class Render{
                     initializeGraph.removeExpression({id: "visualizationGraph"})
                     clearInterval(visualize)
                 } else {
-                  //  console.log("point:", point)
-                  //  console.log("index:", index)
+                    //  console.log("point:", point)
+                    //  console.log("index:", index)
                     let linearFunc = listOfDerivativesAndFunctions[index][0] + "(x -" + point + ") +" + listOfDerivativesAndFunctions[index][1]
-                    initializeGraph.setExpression({id:"visualizationGraph",latex:linearFunc, color: "#c74440"})
+                    // console.log(linearFunc)
+                    if (!String(listOfDerivativesAndFunctions[index][0]).includes("e")) {
+                        initializeGraph.setExpression({id:"visualizationGraph",latex:linearFunc, color: "#FF0000"})
+                    }
                     index++
                     point += INCREMENT 
                 }

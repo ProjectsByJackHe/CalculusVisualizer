@@ -35,7 +35,7 @@ class Riemann {
         // left edge
         const polygon = "\\polygon\\left(\\left(" + x0 + ",0\\right),\\ \\left(" + x0 + "," + FofX + "\\right),\\ \\left(" + x1 + "," + FofX + "\\right),\\ \\left(" + x1 + ",\\ 0\\right)\\right)"
         
-        initializeGraph.setExpression({id: String(id), latex: polygon})
+        initializeGraph.setExpression({id: String(id), latex: polygon, color: "00FF00"})
     }
 
     // EFFECTS: should return F(x) at a specific point
@@ -44,7 +44,7 @@ class Riemann {
         let scope = {
             x:point
         }
-        return math.evaluate(expression, scope) // stub
+        return math.evaluate(expression, scope)
     }
 }
 

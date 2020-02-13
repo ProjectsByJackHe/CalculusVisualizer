@@ -1,5 +1,6 @@
 import RenderObj from './Render.js'
 import Riemann from './Riemann.js'
+import Taylor from './TaylorSeries.js'
 
 // ===========================================================================================================
 // DATA DEFINITIONS
@@ -14,10 +15,12 @@ const riemannButton = document.getElementById("button-riemann")
 const initializeGraph = Desmos.GraphingCalculator(graph)
 const startVisualizing = document.getElementById("startVisualizing")
 const startVisualizingRiemann = document.getElementById("startVisualizing_0")
+const startVisalizingTaylor = document.getElementById("startVisualizing_1")
 const startBoundInputDerivatives = document.getElementById("startBoundInput")
 const endBoundInputDerivatives = document.getElementById("endBoundInput")
 const startBoundInputRiemann = document.getElementById("startBoundInput_0")
 const endBoundInputRiemann = document.getElementById("endBoundInput_0")
+const pointOfApprox = document.getElementById("centralPoint")
 const Render = new RenderObj()
 initializeGraph.updateSettings({invertedColors: true})
 initializeGraph.updateSettings({expressions: false})
@@ -25,7 +28,16 @@ initializeGraph.updateSettings({keypad: false})
 initializeGraph.updateSettings({settingsMenu: false})
 initializeGraph.updateSettings({zoomButtons: false})
 
+// global function object
 var func;
+
+// global taylor object
+var taylor;
+
+// TESTING:
+// const temp = "-2.7755575615628914e-16(x --1.3877787807814457e-16) +1.9259299443872359e-32"
+// initializeGraph.setExpression({latex: temp, id: "temp"})
+
 
 // ===========================================================================================================
 // FUNCTION DEFINITIONS
@@ -50,6 +62,7 @@ var mathField = MQ.MathField(mathFieldSpan, {
     }
   }
 });
+
 
 // "\\polygon\\left(\\left(0,0\\right),\\ \\left(0,1\\right),\\ \\left(1,1\\right),\\ \\left(1,\\ 0\\right)\\right)"
         
@@ -110,9 +123,32 @@ startVisualizingRiemann.onclick =  function(){
   }
 }
 
-// EFFECTS: get Number x1 and Number x2 from user 
-function askForBounds(ref){
 
+
+pointOfApprox.oninput = function() {
+  taylor = new Taylor(Number(pointOfApprox.value), func)
+}
+
+
+startVisalizingTaylor.onclick = function() {
+   // user clicked on the start initialization button
+   if (pointOfApprox.value === "" || func === undefined){
+    alert("hmm... Check that you have a valid function and point entry and that the derivative exists at that point.")
+    return
+  }
+
+  try {
+    taylor.point = Number(pointOfApprox.value)
+    taylor.startApproximate()
+  } catch (err) {
+    alert("Oh no! error: " + err)
+  }
+
+}
+
+
+// EFFECTS: get Number x1 and Number x2 from user 
+function askForBounds(ref) {
       if (ref === "derivative") {
 
         if (document.getElementById("myDropdown").style.display === "block"){
@@ -125,13 +161,20 @@ function askForBounds(ref){
 
 
       } else if (ref === "riemann") {
-
+        
         document.getElementById("myDropdown_0").style.backgroundColor = "red"
         document.getElementById("myDropdown_0").style.left = "240px"
 
         if (document.getElementById("myDropdown_0").style.display === "block"){
           // clear all expressions on the screen
-          initializeGraph.removeExpressions(initializeGraph.getExpressions())
+          const allExpressions = initializeGraph.getExpressions()
+          for (var i = 1; i < allExpressions.length; i++) {
+              initializeGraph.removeExpression({id: allExpressions[i].id})
+          }
+
+          startBoundInputRiemann.value = ""
+          endBoundInputRiemann.value = ""
+
           document.getElementById("myDropdown_0").style.display = "none"
           document.getElementById("button-riemann").innerHTML = "⇓ Visualize Riemann sums"
           return
@@ -140,13 +183,33 @@ function askForBounds(ref){
         document.getElementById("myDropdown_0").style.display = "block" 
         document.getElementById("button-riemann").innerHTML = "⇑ Close Menu" 
 
+    } else if (ref === "taylor") {
+
+        document.getElementById("myDropdown_1").style.backgroundColor = "orange"
+
+        if (window.innerWidth > 700) {
+          document.getElementById("myDropdown_1").style.left = "480px"
+        }
+
+
+      if (document.getElementById("myDropdown_1").style.display === "block"){
+
+        initializeGraph.removeExpression({id: "taylorApproximation"})
+        if (func != undefined) {
+          taylor = new Taylor(Number(pointOfApprox.value), func)
+        }
+        
+
+        document.getElementById("myDropdown_1").style.display = "none"
+        document.getElementById("button-taylor").innerHTML = "⇓ Visualize Taylor Series"
+        return
+      }
+      document.getElementById("myDropdown_1").style.display = "block" 
+      document.getElementById("button-taylor").innerHTML = "⇑ Close Menu"
+
     }
 }
 
-// EFFECTS: get Number x from user
-function askForPoint(){
-  // asks for point where we will take the taylor expansion
-}
 
 derivativeButton.onclick = function() {
 //  console.log("d/dx")
@@ -155,7 +218,7 @@ derivativeButton.onclick = function() {
 
 taylorButton.onclick = function(){
 //  console.log("taylor")
-  askForPoint()
+  askForBounds("taylor")
 }
 
 riemannButton.onclick = function(){
